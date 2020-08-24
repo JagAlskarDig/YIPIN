@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/open_source_bms?characterEncoding=utf8&serverTimezone=UTC
+    #driver-class-name: com.mysql.jdbc.Driver com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    #filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  #关闭模板引擎缓存
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+  mvc:
+    static-path-pattern: /resources/static/**
+  resources:
+    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  #type-aliases-package: com.atguigu.springcloud.entity  #所有entity别名所在包
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
+
+#设置session过期时间
+server:
+  servlet:
+    session:
+      timeout: 30m
+    context-path: /ypgly
+  port: 8081
