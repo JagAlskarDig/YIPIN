@@ -13,13 +13,13 @@ import javax.annotation.Resource;
 /**
  * @author yzy
  */
-//@Configuration
+@Configuration
 public class MyWebAppConfigurer implements WebMvcConfigurer {
 
     @Resource
     private SessionInterceptor sessionInterceptor;
 
-    @Override
+    /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 多个拦截器组成一个拦截器链
         // addPathPatterns 用于添加拦截规则
@@ -41,11 +41,6 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
                 "/index",
                 "/",
                 "/view/index",
-                "/transFileController/downLoadTransFile",
-                "/transFileController/uploadFile",
-                "/userControll/userLogin",
-                "/userControll/userIsLogin",
-                "/transTextController/postTranslation",
                 "/static/**",
                 "/static/js/**",
                 "/static/css/**",
@@ -54,7 +49,7 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
                 "/static/image/**"
                 );   //对应的不拦截的请求
 
-    }
+    }*/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")

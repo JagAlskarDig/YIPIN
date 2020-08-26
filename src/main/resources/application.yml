@@ -3,7 +3,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/open_source_bms?characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/open_source_yipin?characterEncoding=utf8&serverTimezone=UTC
     #driver-class-name: com.mysql.jdbc.Driver com.mysql.cj.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
     #   数据源其他配置
