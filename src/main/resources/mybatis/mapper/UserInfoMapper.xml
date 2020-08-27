@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ypgly.yipin.mapper.UserInfoMapper">
+
+    <insert id="addUserInfo" parameterType="com.ypgly.yipin.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user_info (userNumber,userName,userDistrict,powerNum,
+        <if test="userVipLevel!=null and userVipLevel!=''">
+            userVipLevel,
+        </if>
+        <if test="unionName!=null and unionName!=''">
+            unionName,
+        </if>
+        <if test="unionLeve!=null and unionLeve!=''">
+            unionLeve,
+        </if>
+        doormanNum
+        )
+        values (#{userNumber},#{userName},#{userDistrict},#{powerNum},
+        <if test="userVipLevel!=null and userVipLevel!=''">
+            #{userVipLevel},
+        </if>
+        <if test="unionName!=null and unionName!=''">
+            #{unionName},
+        </if>
+        <if test="unionLeve!=null and unionLeve!=''">
+            #{unionLeve},
+        </if>
+        #{doormanNum})
+    </insert>
+    <select id="getUserInfoByUserNum" resultType="com.ypgly.yipin.entity.UserInfo">
+        select t.id,t.userNumber,t.userName,t.userDistrict,t.powerNum,t.userVipLevel,t.doormanNum,t.unionName,t.unionLeve from t_user_info t where 1=1
+        <if test="userNumber!=null and userNumber!=''">
+            and t.userNumber = #{userNumber}
+        </if>
+        <if test="userDistrict!=null and userDistrict!=''">
+            and t.userDistrict = #{userDistrict}
+        </if>
+    </select>
+</mapper>

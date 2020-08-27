@@ -5,7 +5,15 @@ package com.ypgly.yipin.entity;
  */
 public class UserInfo {
     /**
-     *
+     *id id号
+     * userNumber 用户编号
+     * userName 用户昵称
+     * userDistrict 用户所在区服
+     * powerNum 用户总势力
+     * userVipLevel 用户vip等级
+     * doormanNum 用户门客数量
+     * unionName 用户所在联盟名称
+     * unionLeve 用户联盟等级
      */
     private Integer id;
     private String userNumber;
@@ -16,4 +24,76 @@ public class UserInfo {
     private String doormanNum;
     private String unionName;
     private String unionLeve;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUserNumber() {
+        return userNumber;
+    }
+
+    public void setUserNumber(String userNumber) {
+        this.userNumber = userNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserDistrict() {
+        return userDistrict;
+    }
+
+    public void setUserDistrict(String userDistrict) {
+        this.userDistrict = userDistrict;
+    }
+
+    public String getPowerNum() {
+        return powerNum;
+    }
+
+    public void setPowerNum(String powerNum) {
+        this.powerNum = powerNum;
+    }
+
+    public String getUserVipLevel() {
+        return userVipLevel;
+    }
+
+    public void setUserVipLevel(String userVipLevel) {
+        this.userVipLevel = userVipLevel;
+    }
+
+    public String getDoormanNum() {
+        return doormanNum;
+    }
+
+    public void setDoormanNum(String doormanNum) {
+        this.doormanNum = doormanNum;
+    }
+
+    public String getUnionName() {
+        return unionName;
+    }
+
+    public void setUnionName(String unionName) {
+        this.unionName = unionName;
+    }
+
+    public String getUnionLeve() {
+        return unionLeve;
+    }
+
+    public void setUnionLeve(String unionLeve) {
+        this.unionLeve = unionLeve;
+    }
 }
