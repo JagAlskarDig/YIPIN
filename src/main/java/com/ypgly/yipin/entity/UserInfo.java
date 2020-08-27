@@ -15,7 +15,7 @@ public class UserInfo {
      * unionName 用户所在联盟名称
      * unionLeve 用户联盟等级
      * pageNo 页码
-     * size 每页的大小
+     * size 分页大小
      */
     private Integer id;
     private String userNumber;

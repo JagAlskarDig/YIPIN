@@ -38,4 +38,17 @@
             and t.userDistrict = #{userDistrict}
         </if>
     </select>
+
+    <select id="pageUserInfo" resultType="com.ypgly.yipin.entity.UserInfo">
+        select t.id,t.userNumber,t.userName,t.userDistrict,t.powerNum,t.userVipLevel,t.doormanNum,t.unionName,t.unionLevel from t_user_info t where 1=1
+        <if test="userNumber!=null and userNumber!=''">
+            and t.userNumber = #{userNumber}
+        </if>
+        <if test="userDistrict!=null and userDistrict!=''">
+            and t.userDistrict = #{userDistrict}
+        </if>
+        <if test="doormanNum!=null and doormanNum!=''">
+            and t.doormanNum > #{doormanNum}
+        </if>
+    </select>
 </mapper>

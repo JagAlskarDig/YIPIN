@@ -13,4 +13,6 @@ public interface UserInfoMapper {
     void addUserInfo(UserInfo userInfo);
 
     List<UserInfo> getUserInfoByUserNum(String userNumber, String userDistrict);
+
+    List<UserInfo> pageUserInfo(UserInfo userInfo);
 }

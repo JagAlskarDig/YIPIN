@@ -1,5 +1,6 @@
 package com.ypgly.yipin.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ypgly.yipin.common.GeneralResponse;
 import com.ypgly.yipin.entity.UserInfo;
 import com.ypgly.yipin.service.impl.UserInfoServiceImpl;
@@ -58,23 +59,39 @@ public class UserInfoController {
         return response;
     }
 
-    @PostMapping(value = "")
+    @PostMapping(value = "/userInfo/pageUserInfo")
     @ApiOperation("分页查询用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "userNumber", value = "用户编号",required = true),
-            @ApiImplicitParam(paramType = "query", name = "userDistrict", value = "用户所在区服",required = true),
-            @ApiImplicitParam(paramType = "query", name = "powerNum", value = "用户总势力",required = true),
-            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
-            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
-            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
+            @ApiImplicitParam(paramType = "query", name = "userNumber", value = "用户编号"),
+            @ApiImplicitParam(paramType = "query", name = "userDistrict", value = "用户所在区服"),
+            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量"),
+            @ApiImplicitParam(paramType = "query", name = "pageNo", value = "页码",required = true),
+            @ApiImplicitParam(paramType = "query", name = "size", value = "分页大小",required = true),
     }
     )
     public GeneralResponse pageUserInfo(UserInfo userInfo){
         log.info("进入分页查询用户信息");
         GeneralResponse response=null;
-        Map<String,String> map=new HashMap<>();
+        Map<String,Object> map=new HashMap<>();
         log.info("结束分页查询用户信息");
-
+        map=userInfoService.pageUserInfo(userInfo);
+        if(map!=null){
+            if("1".equals(map.get("flag").toString())){
+                String s= JSONObject.toJSONString(map.get("pageInfo"));
+                JSONObject allObject = JSONObject.parseObject(s);
+                JSONObject outObject=new JSONObject();
+                outObject.put("total",allObject.getString("total"));
+                outObject.put("pages",allObject.getString("pages"));
+                outObject.put("pageNum",allObject.getString("pageNum"));
+                outObject.put("pageSize",allObject.getString("pageSize"));
+                outObject.put("list",allObject.getJSONArray("list"));
+                response=new GeneralResponse("1","查询成功","",outObject);
+            }else{
+                response=new GeneralResponse("0",map.get("msg").toString(),"","");
+            }
+        }else{
+            response=new GeneralResponse("0","分页推荐热词出错","","");
+        }
         return response;
     }
 }

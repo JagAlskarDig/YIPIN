@@ -9,4 +9,6 @@ import java.util.Map;
  */
 public interface UserInfoService {
     Map<String, String> addUserInfo(UserInfo userInfo);
+
+    Map<String, Object> pageUserInfo(UserInfo userInfo);
 }
