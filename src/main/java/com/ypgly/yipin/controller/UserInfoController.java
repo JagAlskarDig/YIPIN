@@ -39,7 +39,7 @@ public class UserInfoController {
             @ApiImplicitParam(paramType = "query", name = "userVipLevel", value = "用户vip等级"),
             @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
             @ApiImplicitParam(paramType = "query", name = "unionName", value = "用户所在联盟名称"),
-            @ApiImplicitParam(paramType = "query", name = "unionLeve", value = "用户联盟等级"),
+            @ApiImplicitParam(paramType = "query", name = "unionLevel", value = "用户联盟等级"),
         }
     )
     public GeneralResponse addUserInfo(UserInfo userInfo){
@@ -60,11 +60,21 @@ public class UserInfoController {
 
     @PostMapping(value = "")
     @ApiOperation("分页查询用户信息")
-    public GeneralResponse pageUserInfo(){
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "userNumber", value = "用户编号",required = true),
+            @ApiImplicitParam(paramType = "query", name = "userDistrict", value = "用户所在区服",required = true),
+            @ApiImplicitParam(paramType = "query", name = "powerNum", value = "用户总势力",required = true),
+            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
+            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
+            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量",required = true),
+    }
+    )
+    public GeneralResponse pageUserInfo(UserInfo userInfo){
         log.info("进入分页查询用户信息");
         GeneralResponse response=null;
         Map<String,String> map=new HashMap<>();
         log.info("结束分页查询用户信息");
+
         return response;
     }
 }

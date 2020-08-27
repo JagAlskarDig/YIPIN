@@ -14,6 +14,8 @@ public class UserInfo {
      * doormanNum 用户门客数量
      * unionName 用户所在联盟名称
      * unionLeve 用户联盟等级
+     * pageNo 页码
+     * size 每页的大小
      */
     private Integer id;
     private String userNumber;
@@ -23,7 +25,9 @@ public class UserInfo {
     private String userVipLevel;
     private String doormanNum;
     private String unionName;
-    private String unionLeve;
+    private String unionLevel;
+    private String pageNo;
+    private String size;
 
     public Integer getId() {
         return id;
@@ -89,11 +93,27 @@ public class UserInfo {
         this.unionName = unionName;
     }
 
-    public String getUnionLeve() {
-        return unionLeve;
+    public String getUnionLevel() {
+        return unionLevel;
     }
 
-    public void setUnionLeve(String unionLeve) {
-        this.unionLeve = unionLeve;
+    public void setUnionLevel(String unionLevel) {
+        this.unionLevel = unionLevel;
+    }
+
+    public String getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(String pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

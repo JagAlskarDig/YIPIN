@@ -12,8 +12,8 @@
         <if test="unionName!=null and unionName!=''">
             unionName,
         </if>
-        <if test="unionLeve!=null and unionLeve!=''">
-            unionLeve,
+        <if test="unionLeve!=null and unionLevel!=''">
+            unionLevel,
         </if>
         doormanNum
         )
@@ -24,13 +24,13 @@
         <if test="unionName!=null and unionName!=''">
             #{unionName},
         </if>
-        <if test="unionLeve!=null and unionLeve!=''">
-            #{unionLeve},
+        <if test="unionLevel!=null and unionLevel!=''">
+            #{unionLevel},
         </if>
         #{doormanNum})
     </insert>
     <select id="getUserInfoByUserNum" resultType="com.ypgly.yipin.entity.UserInfo">
-        select t.id,t.userNumber,t.userName,t.userDistrict,t.powerNum,t.userVipLevel,t.doormanNum,t.unionName,t.unionLeve from t_user_info t where 1=1
+        select t.id,t.userNumber,t.userName,t.userDistrict,t.powerNum,t.userVipLevel,t.doormanNum,t.unionName,t.unionLevel from t_user_info t where 1=1
         <if test="userNumber!=null and userNumber!=''">
             and t.userNumber = #{userNumber}
         </if>
