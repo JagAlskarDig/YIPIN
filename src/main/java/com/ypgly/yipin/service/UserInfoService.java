@@ -11,4 +11,6 @@ public interface UserInfoService {
     Map<String, String> addUserInfo(UserInfo userInfo);
 
     Map<String, Object> pageUserInfo(UserInfo userInfo);
+
+    Map<String, String> updateUserInfo(UserInfo userInfo);
 }

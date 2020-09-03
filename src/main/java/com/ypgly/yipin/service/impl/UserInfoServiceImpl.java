@@ -55,7 +55,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public Map<String, Object> pageUserInfo(UserInfo userInfo) {
-
         Map<String, Object> map=new HashMap<>();
         try {
             int pageNum=1;
@@ -79,6 +78,21 @@ public class UserInfoServiceImpl implements UserInfoService {
             map.put("msg","分页查询用户信息出错，请稍后尝试！");
         }
 
+        return map;
+    }
+
+    @Override
+    public Map<String, String> updateUserInfo(UserInfo userInfo) {
+        Map<String, String> map=new HashMap<>(2);
+        try {
+            userInfoMapper.updateUserInfo(userInfo);
+            map.put("flag","1");
+            map.put("msg","修改成功");
+        }catch (Exception e){
+            log.error("修改用户信息失败！"+e.getMessage());
+            map.put("flag","0");
+            map.put("msg","修改用户信息失败");
+        }
         return map;
     }
 }

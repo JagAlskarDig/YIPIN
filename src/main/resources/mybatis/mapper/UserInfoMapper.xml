@@ -51,4 +51,37 @@
             and t.doormanNum > #{doormanNum}
         </if>
     </select>
+    <update id="updateUserInfo" parameterType="com.ypgly.yipin.entity.UserInfo">
+        <if test="id!=null and id!=''">
+            update t_user_info
+                <set>
+                    <if test="userNumber!=null and userNumber!=''">
+                        userNumber = #{userNumber},
+                    </if>
+                    <if test="userName!=null and userName!=''">
+                        userName = #{userName},
+                    </if>
+                    <if test="userDistrict!=null and userDistrict!=''">
+                        userDistrict = #{userDistrict},
+                    </if>
+                    <if test="powerNum!=null and powerNum!=''">
+                        powerNum = #{powerNum},
+                    </if>
+                    <if test="userVipLevel!=null and userVipLevel!=''">
+                        userVipLevel = #{userVipLevel},
+                    </if>
+                    <if test="doormanNum!=null and doormanNum!=''">
+                        doormanNum = #{doormanNum},
+                    </if>
+                    <if test="unionName!=null and unionName!=''">
+                        unionName = #{unionName},
+                    </if>
+                    <if test="unionLevel!=null and unionLevel!=''">
+                        unionLevel = #{unionLevel},
+                    </if>
+                </set>
+                where id=${id}
+        </if>
+
+    </update>
 </mapper>

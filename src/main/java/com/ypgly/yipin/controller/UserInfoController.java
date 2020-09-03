@@ -9,10 +9,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sun.security.action.GetBooleanAction;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -86,6 +89,37 @@ public class UserInfoController {
                 outObject.put("pageSize",allObject.getString("pageSize"));
                 outObject.put("list",allObject.getJSONArray("list"));
                 response=new GeneralResponse("1","查询成功","",outObject);
+            }else{
+                response=new GeneralResponse("0",map.get("msg").toString(),"","");
+            }
+        }else{
+            response=new GeneralResponse("0","分页推荐热词出错","","");
+        }
+        return response;
+    }
+
+    @PutMapping(value = "/userInfo/updateUserInfo")
+    @ApiOperation("修改用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "id", value = "用户id",required = true),
+            @ApiImplicitParam(paramType = "query", name = "userNumber", value = "用户编号"),
+            @ApiImplicitParam(paramType = "query", name = "userName", value = "用户昵称"),
+            @ApiImplicitParam(paramType = "query", name = "userDistrict", value = "用户所在区服"),
+            @ApiImplicitParam(paramType = "query", name = "powerNum", value = "用户总势力"),
+            @ApiImplicitParam(paramType = "query", name = "userVipLevel", value = "用户vip等级"),
+            @ApiImplicitParam(paramType = "query", name = "doormanNum", value = "用户门客数量"),
+            @ApiImplicitParam(paramType = "query", name = "unionName", value = "用户所在联盟名称"),
+            @ApiImplicitParam(paramType = "query", name = "unionLevel", value = "用户联盟等级"),
+    }
+    )
+    public GeneralResponse updateUserInfo(UserInfo userInfo){
+        log.info("进入修改用户信息");
+        GeneralResponse response=null;
+        Map<String,String> map=new HashMap<>();
+        map=userInfoService.updateUserInfo(userInfo);
+        if(map!=null){
+            if("1".equals(map.get("flag").toString())){
+                response=new GeneralResponse("1","查询成功","","");
             }else{
                 response=new GeneralResponse("0",map.get("msg").toString(),"","");
             }
