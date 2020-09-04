@@ -14,12 +14,16 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -183,5 +187,43 @@ public class GuestInfoController {
         }
         log.info("结束门客删除！");
         return response;
+    }
+
+    @GetMapping(value = "/guestInfo/downtemplate")
+    @ApiOperation("模板下载")
+    @ResponseBody
+    public  void downTemplate(HttpServletResponse response) {
+        InputStream inputStream = null;
+        try {
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment;filename=" + new String("guest-template.xlsx".getBytes(), "ISO-8859-1"));
+
+            ServletOutputStream outputStream = response.getOutputStream();
+
+            inputStream = new FileInputStream(new File(ResourceUtils.getURL("classpath:").getPath() + "static/guest-template.xlsx"));
+            byte[] buff = new byte[1024];
+            int length = 0;
+            while ((length = inputStream.read(buff)) != -1) {
+                outputStream.write(buff, 0, length);
+            }
+            if (outputStream != null) {
+                outputStream.flush();
+                outputStream.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    log.error("关闭资源出错" + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 }
