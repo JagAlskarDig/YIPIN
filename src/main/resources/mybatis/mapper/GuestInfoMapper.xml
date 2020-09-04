@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ypgly.yipin.mapper.GuestInfoMapper">
+    <select id="getGuestInfoByUserNum" resultType="com.ypgly.yipin.entity.GuestInfo">
+        select t.id,t.userNumber,t.doormanName,t.qualification,t.bloodNum,t.isSuit from t_guest_information t where 1=1
+        <if test="userNumber!=null and userNumber!=''">
+            and t.userNumber = #{userNumber}
+        </if>
+        <if test="doormanName!=null and doormanName!=''">
+            and t.doormanName = #{doormanName}
+        </if>
+    </select>
+    <insert id="addGuestInfo" parameterType="com.ypgly.yipin.entity.GuestInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into t_guest_information (userNumber,doormanName,
+        <if test="qualification!=null and qualification!=''">
+            qualification,
+        </if>
+        <if test="bloodNum!=null and bloodNum!=''">
+            bloodNum,
+        </if>
+            isSuit
+        )
+        values (#{userNumber},#{doormanName},
+        <if test="qualification!=null and qualification!=''">
+            #{qualification},
+        </if>
+        <if test="bloodNum!=null and bloodNum!=''">
+            #{bloodNum},
+        </if>
+        #{isSuit})
+    </insert>
+
+    <select id="pageGuestInfo" resultType="com.ypgly.yipin.entity.GuestInfo">
+        select t.id,t.userNumber,t.doormanName,t.qualification,t.bloodNum,t.isSuit from t_guest_information t where 1=1
+        <if test="userNumber!=null and userNumber!=''">
+            and t.userNumber = #{userNumber}
+        </if>
+        <if test="doormanName!=null and doormanName!=''">
+            and t.doormanName = #{doormanName}
+        </if>
+    </select>
+    <update id="updateGuestInfo" parameterType="com.ypgly.yipin.entity.GuestInfo">
+        <if test="id!=null and id!=''">
+            update t_guest_information
+            <set>
+                <if test="userNumber!=null and userNumber!=''">
+                    userNumber = #{userNumber},
+                </if>
+                <if test="doormanName!=null and doormanName!=''">
+                    doormanName = #{doormanName},
+                </if>
+                <if test="qualification!=null and qualification!=''">
+                    qualification = #{qualification},
+                </if>
+                <if test="bloodNum!=null and bloodNum!=''">
+                    bloodNum = #{bloodNum},
+                </if>
+                <if test="isSuit!=null and isSuit!=''">
+                    isSuit = #{isSuit},
+                </if>
+            </set>
+            where id=${id}
+        </if>
+    </update>
+
+    <select id="getGuestInfoById" resultType="com.ypgly.yipin.entity.GuestInfo">
+        select t.id,t.userNumber,t.doormanName,t.qualification,t.bloodNum,t.isSuit from t_guest_information t where id=${id}
+    </select>
+
+    <delete id="deleteGuestInfo" parameterType="int">
+        delete from  t_guest_information where id=${id};
+    </delete>
+</mapper>

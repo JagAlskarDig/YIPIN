@@ -11,6 +11,8 @@ public class GuestInfo {
      * qualification 门客资质
      * bloodNum 门客血量
      * isSuit 是否是套装门客（1五虎、2四奸、3五义、4四杰、5红颜门客）
+     * pageNo 页码
+     * size 分页大小
      */
     private Integer id;
     private String userNumber;
@@ -18,6 +20,8 @@ public class GuestInfo {
     private String qualification;
     private String bloodNum;
     private String isSuit;
+    private String pageNo;
+    private String size;
 
     public Integer getId() {
         return id;
@@ -65,5 +69,21 @@ public class GuestInfo {
 
     public void setIsSuit(String isSuit) {
         this.isSuit = isSuit;
+    }
+
+    public String getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(String pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

@@ -2,6 +2,7 @@ package com.ypgly.yipin.mapper;
 
 import com.ypgly.yipin.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface UserInfoMapper {
     List<UserInfo> pageUserInfo(UserInfo userInfo);
 
     void updateUserInfo(UserInfo userInfo);
+
+    UserInfo getUserInfoById(@Param("id") Integer id);
+
+    int deleteUserInfo(@Param("id") Integer id);
 }

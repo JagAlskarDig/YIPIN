@@ -82,6 +82,13 @@
                 </set>
                 where id=${id}
         </if>
-
     </update>
+
+    <select id="getUserInfoById" resultType="com.ypgly.yipin.entity.UserInfo">
+        select t.id,t.userNumber,t.userName,t.userDistrict,t.powerNum,t.userVipLevel,t.doormanNum,t.unionName,t.unionLevel from t_user_info t where id=${id}
+    </select>
+
+    <delete id="deleteUserInfo" parameterType="int">
+        delete from  t_user_info where id=${id};
+    </delete>
 </mapper>

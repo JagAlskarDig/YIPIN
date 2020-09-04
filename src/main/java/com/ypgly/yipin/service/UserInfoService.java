@@ -13,4 +13,8 @@ public interface UserInfoService {
     Map<String, Object> pageUserInfo(UserInfo userInfo);
 
     Map<String, String> updateUserInfo(UserInfo userInfo);
+
+    UserInfo getUserInfoById(Integer valueOf);
+
+    Map<String, String> deleteUserInfo(Integer valueOf);
 }
