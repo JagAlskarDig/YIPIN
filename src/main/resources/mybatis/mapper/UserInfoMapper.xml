@@ -12,7 +12,7 @@
         <if test="unionName!=null and unionName!=''">
             unionName,
         </if>
-        <if test="unionLeve!=null and unionLevel!=''">
+        <if test="unionLevel!=null and unionLevel!=''">
             unionLevel,
         </if>
         doormanNum

@@ -1,6 +1,7 @@
 package com.ypgly.yipin.service;
 
 import com.ypgly.yipin.entity.GuestInfo;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -17,4 +18,6 @@ public interface GuestInfoService {
     GuestInfo getGuestInfoById(Integer valueOf);
 
     Map<String, String> deleteGuestInfo(Integer valueOf);
+
+    Map<String, String> batchAddGuestInfo(MultipartFile file);
 }

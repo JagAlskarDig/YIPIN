@@ -1,6 +1,7 @@
 package com.ypgly.yipin.service;
 
 import com.ypgly.yipin.entity.UserInfo;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -17,4 +18,6 @@ public interface UserInfoService {
     UserInfo getUserInfoById(Integer valueOf);
 
     Map<String, String> deleteUserInfo(Integer valueOf);
+
+    Map<String, String> batchAddUserInfo(MultipartFile file);
 }

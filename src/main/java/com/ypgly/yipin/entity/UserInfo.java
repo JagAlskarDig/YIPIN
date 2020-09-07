@@ -13,7 +13,7 @@ public class UserInfo {
      * userVipLevel 用户vip等级
      * doormanNum 用户门客数量
      * unionName 用户所在联盟名称
-     * unionLeve 用户联盟等级
+     * unionLevel 用户联盟等级
      * pageNo 页码
      * size 分页大小
      */
@@ -116,4 +116,5 @@ public class UserInfo {
     public void setSize(String size) {
         this.size = size;
     }
+
 }

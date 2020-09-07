@@ -16,9 +16,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
@@ -225,5 +228,40 @@ public class GuestInfoController {
             }
 
         }
+    }
+
+    @PostMapping(value = "/guestInfo/batchAddGuestInfo")
+    @ApiOperation("批量上传玩家门客信息")
+    public GeneralResponse batchAddGuestInfo(HttpServletRequest request){
+
+        log.info("进入批量上传玩家门客信息");
+        GeneralResponse response=null;
+        MultipartHttpServletRequest params=((MultipartHttpServletRequest) request);
+        MultipartFile file=((MultipartHttpServletRequest) request).getFile("file");
+
+        if(file.isEmpty()){
+            return  new GeneralResponse("0","文件为空","","");
+        }
+        String fileName=file.getOriginalFilename();
+        String fileType=fileName.substring(fileName.lastIndexOf(".")+1);
+        if(!"xlsx".equals(fileType)&&!"xls".equals(fileType)){
+            return new GeneralResponse("0","暂不支持"+fileType+"类型文件上传！","","");
+        }
+        Map<String,String> map=new HashMap<>();
+        map=guestInfoService.batchAddGuestInfo(file);
+        if(map!=null){
+
+            if("1".equals(map.get("flag"))){
+                response=new GeneralResponse("1",map.get("msg"),"","");
+            }else if("2".equals(map.get("flag"))){
+                response=new GeneralResponse("0",map.get("msg"),"",map.get("errsize"));
+            }else{
+                response=new GeneralResponse("0",map.get("msg"),"","");
+            }
+        }else{
+            response=new GeneralResponse("0","添加失败！","","");
+        }
+        log.info("结束批量上传门客信息！");
+        return response;
     }
 }
